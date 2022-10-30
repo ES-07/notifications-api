@@ -29,9 +29,6 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install Python Virtual ENV
-        run: pip3 install virtualenv
-
       - name:  Setup Virtual env
         uses: actions/cache@v2
         id: cache-venv
@@ -41,19 +38,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-venv-
       - name: Activate and Install Depencies into Virtual env
-        run: python -m venv venv && source venv/bin/activate && pip install -r app/requirements.txt
+        run: python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
 
       - name: test
         run: ls -la
-
-      - name: test app
-        run: cd app/ && ls -la
 
       - name: Activate venv and Run Test        
         run: cd app/ && pytest 
 
       - name: Build Docker-compose
-        run: cd app/ && sudo docker-compose build
+        run: sudo docker-compose build
 
       - name: Run Docker-compose servies
-        run: cd app/ && sudo docker-compose up -d
+        run: sudo docker-compose up -d
