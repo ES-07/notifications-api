@@ -48,7 +48,7 @@ jobs:
         run: source venv/bin/activate && pytest
 
       - name: Build Docker-compose
-        run: sudo apt-get install docker-compose && sudo docker-compose build
+        run: sudo apt-get install docker-compose -y && sudo docker-compose build
 
       - name: Run Docker-compose servies
         run: sudo docker-compose up -d
