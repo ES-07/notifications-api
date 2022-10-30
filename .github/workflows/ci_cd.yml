@@ -37,12 +37,12 @@ jobs:
           key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
           restore-keys: |
             ${{ runner.os }}-venv-
-            
+
       - name: Activate and Install Dependencies into Virtualenv
-        run: python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip && pip3 install -r app/requirements.txt
+        run: source venv/bin/activate && pip install -r app/requirements.txt
 
       - name: Activate venv and Run Test        
-        run: cd app/ && python3 -m pytest
+        run: cd app/ && pytest
 
       - name: Build Docker-compose
         run: sudo docker-compose build
