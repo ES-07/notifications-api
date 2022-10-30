@@ -41,7 +41,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-venv-
       - name: Activate and Install Depencies into Virtual env
-        run: source venv/bin/activate && pip install -r app/requirements.txt
+        run: python -m venv venv && source venv/bin/activate && pip install -r app/requirements.txt
 
       - name: Activate venv and Run Test        
         run: cd app/ && pytest 
