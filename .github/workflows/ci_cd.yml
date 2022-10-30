@@ -38,6 +38,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-venv-
 
+      - name: ls
+        run: ls -la
+
       - name: Activate and Install Dependencies into Virtualenv
         run: source venv/bin/activate && pip install -r app/requirements.txt
 
