@@ -1,12 +1,11 @@
 import email
-from msilib.schema import MIME
 from fastapi import FastAPI
 from api.models import Intrusion
 import httpx
 import requests
 import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
+# from email.mime.text import MIMEText
+# from email.header import Header
 
 
 app = FastAPI()
@@ -36,7 +35,8 @@ async def request_email(client, camera_id):
 
 def send_email(intrusion_dict):
 
-    information = f"NEW INTRUSION DETECTED AT {intrusion_dict.timestamp} | FRAME: {intrusion_dict.frame_id} | CAMERA: {intrusion_dict.camera_id}\nThis is an automatic message!"
+    """
+     information = f"NEW INTRUSION DETECTED AT {intrusion_dict.timestamp} | FRAME: {intrusion_dict.frame_id} | CAMERA: {intrusion_dict.camera_id}\nThis is an automatic message!"
     msg = MIMEText(information, 'plain', 'utf-8')
     msg['Subject'] = Header("Intrusion detected!", 'utf-8')
     msg['From'] = "cctv-es007@gmail.com"
@@ -45,4 +45,6 @@ def send_email(intrusion_dict):
     # Send the message via our own SMTP server (localhost)
     s = smtplib.SMTP('localhost')
     s.sendmail("cctv-es007@gmail.com", [email], msg.as_string())
-    s.quit()
+    s.quit() 
+    """
+    pass
