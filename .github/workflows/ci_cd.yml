@@ -43,6 +43,12 @@ jobs:
       - name: Activate and Install Depencies into Virtual env
         run: python -m venv venv && source venv/bin/activate && pip install -r app/requirements.txt
 
+      - name: test
+        run: ls -la
+
+      - name: test app
+        run: cd app/ && ls -la
+
       - name: Activate venv and Run Test        
         run: cd app/ && pytest 
 
